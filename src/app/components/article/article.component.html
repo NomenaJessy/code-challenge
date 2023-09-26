@@ -1,0 +1,30 @@
+<app-header></app-header>
+<div class="content">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <form class=" mt-4" (ngSubmit)="searchArticles()">
+          <input type="text" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Search any title, section or author" (input)="searchArticles()">
+
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+
+  <div class="row">
+    <div *ngFor="let item of articles" class="col-md-6 mt-4">
+        <div class="card" style="height:250px">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{item.section}}</h6>
+            <p class="card-text">{{item.abstract}}</p>
+            <a *ngIf="item.url !== ''" href="{{item.url}}" class="card-link">Show more</a>
+          </div>
+          <div  *ngIf="item.byline !== ''" class="card-footer text-body-secondary">
+            {{item.byline}}
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
